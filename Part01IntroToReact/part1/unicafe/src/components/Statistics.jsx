@@ -1,3 +1,5 @@
+import StatisticLine from "./StatisticLine";
+
 const Statistics = ({good, neutral, bad}) => {
   const totalReviews = good + neutral + bad;
   const positivePercentage = 
@@ -6,12 +8,12 @@ const Statistics = ({good, neutral, bad}) => {
     totalReviews ? (good - bad) / totalReviews : good - bad;
   return(
     <>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {totalReviews}</p>
-      <p>average {average}</p>
-      <p>positive {positivePercentage} %</p>
+      <StatisticLine text='good' value={good}/>
+      <StatisticLine text='neutral' value={neutral}/>
+      <StatisticLine text='bad' value={bad}/>
+      <StatisticLine text='all' value={totalReviews}/>
+      <StatisticLine text='average' value={average}/>
+      <StatisticLine text='positive' value={`${positivePercentage}%`}/>
     </>
   );
 }
