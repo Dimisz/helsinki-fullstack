@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import ShowNextButton from './ShowNextButton'
+import ShowNextButton from './ShowNextButton';
+import VoteButton from './VoteButton';
 
 const App = () => {
   const anecdotes = [
@@ -11,19 +12,42 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
-  ]
+  ];
+
+  const initialVotes = new Array(anecdotes.length).fill(0);
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([...initialVotes]);
+
   const handleShowNextAnecdote = () => {
     const randomNum = Math.floor(Math.random() * anecdotes.length);
     setSelected(randomNum);
+  };
+
+  const handleVote = () => {
+    const updatedVotes = [...votes];
+    updatedVotes[selected] += 1;
+    setVotes([...updatedVotes]);
+    // console.log(votes);
+    // console.log(`anecdotes arr: ${anecdotes.length}`);
+    // console.log(`votes arr: ${votes.length}`);
   }
   return (
     <>
       <div>
         {anecdotes[selected]}
+        <>
+          {
+            votes[selected] > 0
+            ?
+            <p>has {votes[selected]} votes</p>
+            :
+            <p>no votes so far</p>
+          }
+        </>
       </div>
       <ShowNextButton generateRandomAnecdote={handleShowNextAnecdote}/>
+      <VoteButton handleVote={handleVote}/>
     </>
   )
 }
