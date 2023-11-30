@@ -6,7 +6,6 @@ const Statistics = ({good, neutral, bad}) => {
     totalReviews ? (good - bad) / totalReviews : good - bad;
   return(
     <>
-      <h2>statistics</h2>
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>

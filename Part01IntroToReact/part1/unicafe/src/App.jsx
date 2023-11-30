@@ -7,6 +7,8 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  const feedbackGiven = good || neutral || bad;
+
   const handleIncrementGoodCount = () => {
     setGood((curr) => curr + 1);
   }
@@ -28,7 +30,17 @@ const App = () => {
         <FeedbackButton label='neutral' setFeedback={handleIncrementNeutralCount} />
         <FeedbackButton label='bad' setFeedback={handleIncrementBadCount} />
       </div>
-      <Statistics good={good} neutral={neutral} bad={bad} /> 
+      <>
+        <h2>statistics</h2>
+        {
+          feedbackGiven
+            ?
+            <Statistics good={good} neutral={neutral} bad={bad} />
+            :
+            <p>No feedback given</p>
+        }
+      </>
+       
     </>
   )
 }
