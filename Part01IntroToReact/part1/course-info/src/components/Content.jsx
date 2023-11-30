@@ -1,12 +1,10 @@
 import Part from "./Part";
 
-const Content = ({ part1, part2, part3 }) => {
+const Content = ({ parts }) => {
+  const renderedParts = parts.map((part) => <Part key={part.name} part={part} /> );
   return(
     <>
-      <Part part={part1} />
-      <Part part={part2} />
-      <Part part={part3} />
-      
+      {renderedParts}
     </>
   );
 }
